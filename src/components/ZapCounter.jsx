@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import zaps from "../zaps"
-export default function ZapCounter (){
+export default function ZapCounter (props){
     return (
         <Counter>
-            <p>0/{zaps.length} CONCLUÍDOS</p>
+            <p>{props.cont}/{zaps.length} CONCLUÍDOS</p>
         </Counter>
     )
 }

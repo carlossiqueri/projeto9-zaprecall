@@ -6,12 +6,30 @@ const [revealed, setRevealed] = useState(false)
 function answerReveal (){
   setRevealed(true);
 }
+
+function attCont (clicked){
+  props.setCont(props.cont + 1);
+  props.setAnswered(true);
+  props.setColor(clicked);
+}
+
   return (
     <div>
         <Answer>
           <p>{!revealed ? props.question : props.answer}</p>
-          <img onClick={answerReveal} src={seta_virar} alt=""/>
+          {!revealed ? <img onClick={answerReveal} src={seta_virar} alt=""/> : ""}
+          
+          {!revealed ? "" :
+
+          <ContainerButtons>
+          <Button onClick={() => attCont("a")} color="#FF3030">Não lembrei</Button>
+          <Button onClick={() => attCont("b")} color="#FF922E">Quase não lembrei</Button>
+          <Button onClick={() => attCont("c")} color="#2FBE34">Zap!</Button>
+          </ContainerButtons>
+      }
         </Answer>
+
+        
     </div>
   );
 
@@ -26,8 +44,9 @@ const Answer = styled.div`
   border-radius: 5px;
   margin-bottom: 25px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+
 
   p {
     font-family: "Recursive", sans-serif;
@@ -36,6 +55,7 @@ const Answer = styled.div`
     font-size: 16px;
     color: #333333;
     margin-left: 15px;
+    margin-top: 18px;
   }
 
   img {
@@ -43,7 +63,31 @@ const Answer = styled.div`
     height: 23px;
     margin-right: 15px;
     position: relative;
-    top: 45px;
-    right: 5px;
+    bottom: 8px;
+    left: 266px;
+
   }
 `;
+
+const Button = styled.div `
+  @import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
+    width: 86px;
+    height: 38px;
+    border-radius: 5px;
+    background-color: ${props => props.color};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: 'Recursive', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+`
+
+const ContainerButtons = styled.div `
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+`

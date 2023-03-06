@@ -1,38 +1,42 @@
 import styled from "styled-components";
-import seta_play from "../assets/seta_play.png";
-import seta_virar from "../assets/seta_virar.png"
 import { useState } from "react";
 import FlashQuestion from "./FlashQuestion";
 import FlashAnswer from "./FlashAnswer";
 export default function FlashCard(props) {
-    const [started, setStarted] = useState(true);
-    function startedZap (){
-        setStarted(false);
-      }
+  const [started, setStarted] = useState(true);
+  const [answered, setAnswered] = useState (false)
+  const [color, setColor] = useState("")
+  function startedZap() {
+    setStarted(false);
+  }
 
   return (
     <Card>
-      {/* <Question  started={started}>
-      <p>{started ? `Pergunta ${id}` : `${question}`}</p>
-      <img onClick={startedZap} src={started ? seta_play : seta_virar} alt={`${started ? 'seta play' : 'seta virar'}`} />
-      </Question> */}
 
-      {started ?  <FlashQuestion 
-    id={props.id} 
-    question={props.question}
-    answer={props.answer}
-    startedZap={startedZap}
-    started={started}
-    setStarted={setStarted}
-    /> : <FlashAnswer 
-    id={props.id} 
-    question={props.question}
-    answer={props.answer}
-    startedZap={startedZap}
-    started={started}
-    setStarted={setStarted}
-    />}
-   
+      {started || answered ?  (
+        <FlashQuestion color={color === "c" ? "#2FBE34" : color === "b" ? "#FF922E" : color === "a" ? "#FF3030" : ""}
+          id={props.id}
+          question={props.question}
+          answer={props.answer}
+          startedZap={startedZap}
+          started={started}
+          setStarted={setStarted}
+        />
+      ) : (
+        <FlashAnswer
+          id={props.id}
+          question={props.question}
+          answer={props.answer}
+          startedZap={startedZap}
+          started={started}
+          setStarted={setStarted}
+          cont={props.cont} 
+          setCont={props.setCont}  
+          setAnswered={setAnswered}
+          setColor = {setColor}
+        />
+)
+}
 
     </Card>
   );
@@ -47,32 +51,3 @@ const Card = styled.div`
   top: 150px;
 `;
 
-// const Question = styled.div`
-//   width: 300px;
-//   height: ${(props) => (props.started ? "65px" : "131px")};
-//   background-color: #ffffff;
-//   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-//   border-radius: 5px;
-//   margin-bottom: 25px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-
-//   p {
-//     font-family: "Recursive", sans-serif;
-//     font-weight: 700;
-//     font-style: normal;
-//     font-size: 16px;
-//     color: #333333;
-//     margin-left: 15px;
-//   }
-
-//   img {
-//     width: 20px;
-//     height: 23px;
-//     margin-right: 15px;
-//     position: ${(props) => (props.started ? "" : "relative")};
-//     top: ${(props) => (props.started ? "" : "45px")};
-//     right: ${(props) => (props.started ? "" : "5px")};
-//   }
-// `;

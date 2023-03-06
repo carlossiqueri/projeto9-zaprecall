@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FlashCard from "./FlashCard"
 import zaps from "../zaps"
-export default function CardRow (){
+export default function CardRow ({setCont, cont}){
     return (    
         <>
         {zaps.map((q) => {
@@ -11,6 +11,8 @@ export default function CardRow (){
             id= {q.id}
             question={q.question}
             answer={q.answer}
+            setCont = {setCont}
+            cont = {cont}
             />
             )
         })}

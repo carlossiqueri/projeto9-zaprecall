@@ -5,13 +5,15 @@ import CardRow from "./CardRow"
 import { useState } from "react";
 
 export default function ZapFilter() {
- 
-  const [estagio, setEstagio] = useState (0);
+const [cont, setCont] = useState(0);
+
+
+
   return (
       <Main>
         <ZapTitle />
-        <CardRow/>
-        <ZapCounter />
+        <CardRow cont={cont} setCont={setCont}/>
+        <ZapCounter cont={cont} setCont={setCont}/>
       </Main>
 
   );

@@ -1,13 +1,28 @@
 import { useState } from "react";
 import styled from "styled-components";
 import seta_play from "../assets/seta_play.png";
+import icone_certo from "../assets/icone_certo.png";
+import icone_quase from "../assets/icone_quase.png";
+import icone_erro from "../assets/icone_erro.png";
 export default function FlashQuestion(props) {
-    return (
-        <Quest>
-        <p>Pergunta {props.id}</p>
-        <img onClick={props.startedZap} src={seta_play} alt={seta_play} /> 
-        </Quest>
-    )
+  return (
+    <Quest color={props.color}>
+      <p>Pergunta {props.id}</p>
+      <img
+        onClick={props.startedZap}
+        src={
+          props.color == "#2FBE34"
+            ? icone_certo
+            : props.color == "#FF922E"
+            ? icone_quase
+            : props.color == "#FF3030"
+            ? icone_erro
+            : seta_play
+        }
+        alt={seta_play}
+      />
+    </Quest>
+  );
 }
 
 const Quest = styled.div`
@@ -26,7 +41,8 @@ const Quest = styled.div`
     font-weight: 700;
     font-style: normal;
     font-size: 16px;
-    color: #333333;
+    color: ${(props) => (props.color ? props.color : "#333333")};
+    text-decoration: ${(props) => (props.color ? "line-through" : "")};
     margin-left: 15px;
   }
 
