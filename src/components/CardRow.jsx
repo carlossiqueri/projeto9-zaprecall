@@ -8,7 +8,9 @@ export default function CardRow (){
             return(
             <FlashCard
             key={q.id} 
-            id= {q.id} 
+            id= {q.id}
+            question={q.question}
+            answer={q.answer}
             />
             )
         })}

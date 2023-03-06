@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import seta_play from "../assets/seta_play.png";
-export default function FlashCard({ id }) {
+import seta_virar from "../assets/seta_virar.png"
+import { useState } from "react";
+export default function FlashCard({ id, question }) {
+    const [started, setStarted] = useState(true);
+    function startedZap (){
+        setStarted(false);
+      }
+
   return (
     <Card>
-      <Question>
-        <p>Pergunta {id}</p>
-        <img src={seta_play} alt={seta_play} />
+      <Question  started={started}>
+      <p>{started ? `Pergunta ${id}` : `${question}`}</p>
+      <img onClick={startedZap} src={started ? seta_play : seta_virar} alt={`${started ? 'seta play' : 'seta virar'}`} />
       </Question>
+
+
     </Card>
   );
 }
@@ -18,12 +27,11 @@ const Card = styled.div`
   justify-content: center;
   position: relative;
   top: 150px;
-
 `;
 
 const Question = styled.div`
   width: 300px;
-  height: 65px;
+  height: ${(props) => (props.started ? "65px" : "131px")};
   background-color: #ffffff;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
@@ -45,5 +53,8 @@ const Question = styled.div`
     width: 20px;
     height: 23px;
     margin-right: 15px;
+    position: ${(props) => (props.started ? "" : "relative")};
+    top: ${(props) => (props.started ? "" : "45px")};
+    right: ${(props) => (props.started ? "" : "5px")};
   }
 `;
