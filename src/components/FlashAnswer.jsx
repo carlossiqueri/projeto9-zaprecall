@@ -17,7 +17,7 @@ function attCont (clicked){
     <div>
         <Answer>
           <p>{!revealed ? props.question : props.answer}</p>
-          {!revealed ? <img onClick={answerReveal} src={seta_virar} alt=""/> : ""}
+          {!revealed ? <img data-test="turn-btn" onClick={answerReveal} src={seta_virar} alt=""/> : ""}
           
           {!revealed ? "" :
 

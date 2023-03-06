@@ -6,9 +6,10 @@ import icone_quase from "../assets/icone_quase.png";
 import icone_erro from "../assets/icone_erro.png";
 export default function FlashQuestion(props) {
   return (
-    <Quest color={props.color}>
-      <p>Pergunta {props.id}</p>
-      <img
+    <Quest color={props.color} data-test="flash-card">
+    
+      <p data-test="flashcard-text">Pergunta {props.id}</p>
+      <img data-test="play-btn"
         onClick={props.startedZap}
         src={
           props.color == "#2FBE34"
