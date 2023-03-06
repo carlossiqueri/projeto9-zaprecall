@@ -1,32 +1,25 @@
-import styled from "styled-components"
-import { useState } from "react"
-import seta_virar from "../assets/seta_virar.png"
-export default function FlashAnswer (question){
-    return (
-        <div>
-        <CardAnswer>
+import styled from "styled-components";
+import { useState } from "react";
+import seta_virar from "../assets/seta_virar.png";
+export default function FlashAnswer(props) {
+const [revealed, setRevealed] = useState(false)
+function answerReveal (){
+  setRevealed(true);
+}
+  return (
+    <div>
         <Answer>
-        <p>{question}</p>
-          <img  
-          src={seta_virar} />
-          </Answer>
-    </CardAnswer>
-        </div>
-    )
+          <p>{!revealed ? props.question : props.answer}</p>
+          <img onClick={answerReveal} src={seta_virar} alt=""/>
+        </Answer>
+    </div>
+  );
+
 }
 
 
-const CardAnswer = styled.div `
-@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap");
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  top: 150px;
-`
-
-const Answer = styled.div `
-width: 300px;
+const Answer = styled.div`
+  width: 300px;
   height: 131px;
   background-color: #ffffff;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
@@ -53,4 +46,4 @@ width: 300px;
     top: 45px;
     right: 5px;
   }
-`
+`;
