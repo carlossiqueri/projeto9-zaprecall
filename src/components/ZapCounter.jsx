@@ -2,7 +2,7 @@ import styled from "styled-components"
 import zaps from "../zaps"
 export default function ZapCounter (props){
     return (
-        <Counter>
+        <Counter data-test="footer">
             <p>{props.cont}/{zaps.length} CONCLUÍDOS</p>
         </Counter>
     )

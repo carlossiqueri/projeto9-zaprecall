@@ -12,7 +12,7 @@ const [cont, setCont] = useState(0);
   return (
       <Main>
         <ZapTitle />
-        <CardRow cont={cont} setCont={setCont}/>
+        <CardRow data-test="flashcard" cont={cont} setCont={setCont}/>
         <ZapCounter cont={cont} setCont={setCont}/>
       </Main>
 
